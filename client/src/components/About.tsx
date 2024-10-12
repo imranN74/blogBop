@@ -1,6 +1,6 @@
 export const About = () => {
   return (
-    <div>
+    <div className="mt-20">
       <div className="text-xl">About blogBop</div>
       <div>
         "BlogBop" is a platform where anyone can post blogs and users can read
