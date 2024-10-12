@@ -8,6 +8,7 @@ import { Signup } from "./pages/Signup";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "./store/atom";
 import { Navbar } from "./components/Navbar";
+import { AboutPage } from "./pages/AboutPage";
 
 function App() {
   const isLoggedIn = useRecoilValue(authAtom);
@@ -26,6 +27,7 @@ function App() {
           }
         />
         <Route path="/" element={<LandingBlogs />} />
+        <Route path="/aboutus" element={<AboutPage />} />
         <Route
           path="/login"
           element={isLoggedIn ? <Navigate to="/" replace /> : <Signin />}
