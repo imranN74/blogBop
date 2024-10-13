@@ -15,21 +15,22 @@ export const CreateBlogForm = () => {
   async function handlePostSubmit() {
     if (blogData.title === "" || blogData.content === "") {
       alert("Please fill all fields");
-    }
-    const response = await axios.post(
-      `${BACKEND_BASE_URL}/blog`,
-      {
-        title: blogData.title,
-        content: blogData.content,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    } else {
+      const response = await axios.post(
+        `${BACKEND_BASE_URL}/blog`,
+        {
+          title: blogData.title,
+          content: blogData.content,
         },
-      }
-    );
-    alert(response.data.message);
-    navigate("/");
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert(response.data.message);
+      navigate("/");
+    }
   }
 
   function handleInputChange(
