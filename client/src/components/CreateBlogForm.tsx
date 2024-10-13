@@ -13,6 +13,9 @@ export const CreateBlogForm = () => {
 
   const token = localStorage.getItem("jwt");
   async function handlePostSubmit() {
+    if (blogData.title === "" || blogData.content === "") {
+      alert("Please fill all fields");
+    }
     const response = await axios.post(
       `${BACKEND_BASE_URL}/blog`,
       {
