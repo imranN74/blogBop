@@ -95,6 +95,10 @@ userRouter.post("/login", async (c) => {
         email: body.email,
         password: body.password,
       },
+      select: {
+        id: true,
+        name: true,
+      },
     });
 
     if (!user) {
@@ -115,6 +119,7 @@ userRouter.post("/login", async (c) => {
     return c.json(
       {
         token,
+        name: user.name,
       },
       statusCodes.success
     );

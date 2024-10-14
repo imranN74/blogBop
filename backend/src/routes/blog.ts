@@ -137,7 +137,7 @@ blogRouter.put("/edit", userAuthorization, async (c) => {
 //route to get specific blog
 blogRouter.get("/:postId", userAuthorization, async (c) => {
   const blogId = c.req.param("postId");
-
+  const authId = c.get("jwtPayload");
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -147,14 +147,31 @@ blogRouter.get("/:postId", userAuthorization, async (c) => {
       where: {
         id: blogId,
       },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
 
-    return c.json(
-      {
-        data: specificBlog,
-      },
-      statusCodes.success
-    );
+    if (specificBlog) {
+      return c.json(
+        {
+          data: specificBlog,
+          isAuther: authId === specificBlog.authorId,
+        },
+        statusCodes.success
+      );
+    } else {
+      return c.json(
+        {
+          message: "Post not found",
+        },
+        statusCodes.notFound
+      );
+    }
   } catch (err) {
     return c.json(
       {

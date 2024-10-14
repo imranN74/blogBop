@@ -20,6 +20,12 @@ function App() {
           path="/blog/:id"
           element={isLoggedIn ? <Blog /> : <Navigate to="/login" replace />}
         />
+        {/* <Route
+          path="/post/:id"
+          element={
+            isLoggedIn ? <CreateBlog /> : <Navigate to="/login" replace />
+          }
+        /> */}
         <Route
           path="/post"
           element={

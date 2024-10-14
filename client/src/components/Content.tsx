@@ -13,6 +13,7 @@ export const Content = () => {
       name: string;
     };
     id: string;
+    isAuther: boolean;
   };
 
   const response = useRecoilValueLoadable(blogSelector("/blog"));
