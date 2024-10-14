@@ -27,9 +27,9 @@ export const BlogContent = () => {
     specificBlogSelector(`/blog/${id}`)
   );
 
-  if (blogContent.state === "hasValue") {
-    console.log(blogContent.contents);
-  }
+  // if (blogContent.state === "hasValue") {
+  //   console.log(blogContent.contents);
+  // }
 
   useEffect(() => {
     if (blogContent.state === "hasValue") {
@@ -40,7 +40,7 @@ export const BlogContent = () => {
     }
   }, [blogContent]);
 
-  console.log("auther right=====", blog);
+  // console.log("auther right=====", blog);
 
   if (blogContent.state === "loading") {
     return (

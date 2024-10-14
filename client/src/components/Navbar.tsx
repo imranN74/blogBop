@@ -101,7 +101,7 @@ export const Navbar = () => {
               </div>
             </li>
             <li>
-              <LogButton status={isLoggedIn} />
+              <LogButton status={isLoggedIn} toggle={toggleMenu} />
             </li>
           </ul>
         </div>

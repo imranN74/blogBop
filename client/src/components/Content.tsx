@@ -69,7 +69,7 @@ export const Content = () => {
                       to={`/blog/${element.id}`}
                       className="font-bold font-mono  text-blue-500"
                     >
-                      read
+                      read more
                     </Link>
                   </div>
                 </div>
