@@ -90,8 +90,9 @@ blogRouter.get("/", async (c) => {
 });
 
 //route to update blog
-blogRouter.put("/edit", userAuthorization, async (c) => {
+blogRouter.put("/edit/:id", userAuthorization, async (c) => {
   const body = await c.req.json();
+  const blogId = c.req.param("id");
 
   const { success } = updatePostBlog.safeParse(body);
   if (!success) {
@@ -114,7 +115,7 @@ blogRouter.put("/edit", userAuthorization, async (c) => {
         content: body.content,
       },
       where: {
-        id: body.id,
+        id: blogId,
       },
     });
     return c.json(
@@ -173,6 +174,39 @@ blogRouter.get("/:postId", userAuthorization, async (c) => {
       );
     }
   } catch (err) {
+    return c.json(
+      {
+        message: "something went wrong",
+      },
+      statusCodes.wentWrong
+    );
+  }
+});
+
+//Delete blog
+blogRouter.post("/delete/:id", userAuthorization, async (c) => {
+  const blogId = c.req.param("id");
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    await prisma.blog.update({
+      data: {
+        published: false,
+      },
+      where: {
+        id: blogId,
+      },
+    });
+
+    return c.json(
+      {
+        message: "post deleted",
+      },
+      statusCodes.success
+    );
+  } catch (error) {
     return c.json(
       {
         message: "something went wrong",
