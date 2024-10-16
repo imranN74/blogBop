@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { blogAtom } from "../store/atom";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
   type BlogPost = {
@@ -41,7 +42,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
   const token = localStorage.getItem("jwt");
   async function handlePostSubmit() {
     if (blogData.title === "" || blogData.content === "") {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
     } else {
       const endPoint = isEdit ? `/blog/edit/${id}` : "/blog";
       const response = await axios.post(
@@ -56,7 +57,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
           },
         }
       );
-      alert(response.data.message);
+      toast(response.data.message);
       navigate("/");
     }
   }
@@ -72,7 +73,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
     <div className="mt-24">
       <div>
         <div className="flex justify-center">
-          <div className="text-2xl font-bold underline">
+          <div className="text-2xl text-red-600 font-bold underline">
             {isEdit ? "UPDATE BLOG" : "POST NEW BLOG"}
           </div>
         </div>
@@ -98,7 +99,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
             cols={90}
             id="comment"
             className="w-full px-1 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-            placeholder="Write a body..."
+            placeholder="Write content here..."
             required
           ></textarea>
         </div>

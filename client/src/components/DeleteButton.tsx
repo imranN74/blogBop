@@ -2,29 +2,31 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_BASE_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const DeleteButton = () => {
-  const token = localStorage.getItem("jwt");
   const { id } = useParams();
   const navigate = useNavigate();
   async function handleDeleteButton() {
     const confirmValue: boolean = confirm("Do you want to delete this post?");
-    console.log(confirmValue);
+
     if (confirmValue) {
       try {
-        const response = await axios.post(
+        const token = localStorage.getItem("jwt");
+        const { data } = await axios.post(
           `${BACKEND_BASE_URL}/blog/delete/${id}`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        alert(response.data.message);
+
+        toast.warning(data.message);
         navigate("/");
       } catch (error: any) {
-        console.log(error);
-        alert(error.message);
+        toast.error(error.response.data.message);
       }
     }
   }

@@ -18,7 +18,7 @@ export async function userAuthorization(c: Context, next: Next) {
     if (!token) {
       return c.json(
         {
-          message: "you are not logged in",
+          message: "you are not authorized",
         },
         statusCodes.notAuthorized
       );
@@ -28,11 +28,9 @@ export async function userAuthorization(c: Context, next: Next) {
     c.set("jwtPayload", authUser.userId);
     await next();
   } catch (err) {
-    console.log(err);
-    console.log(err);
     return c.json(
       {
-        message: "session has expired",
+        message: "session has expired,try logging in again",
       },
       statusCodes.notAuthorized
     );
