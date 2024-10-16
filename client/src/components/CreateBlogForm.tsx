@@ -57,7 +57,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
           },
         }
       );
-      toast(response.data.message);
+      toast.success(response.data.message);
       navigate("/");
     }
   }
