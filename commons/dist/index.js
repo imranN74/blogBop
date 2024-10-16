@@ -21,5 +21,4 @@ exports.postBlog = zod_1.default.object({
 exports.updatePostBlog = zod_1.default.object({
     title: zod_1.default.string(),
     content: zod_1.default.string(),
-    id: zod_1.default.string(),
 });

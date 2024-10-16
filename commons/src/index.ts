@@ -19,7 +19,6 @@ export const postBlog = z.object({
 export const updatePostBlog = z.object({
   title: z.string(),
   content: z.string(),
-  id: z.string(),
 });
 
 export type SignupInput = z.infer<typeof signupInput>;

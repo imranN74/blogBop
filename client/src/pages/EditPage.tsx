@@ -1,10 +1,10 @@
 import { CreateBlogForm } from "../components/CreateBlogForm";
 
-export const CreateBlog = () => {
+export const EditPage = () => {
   return (
     <div className="grid grid-cols-10">
       <div className="col-start-3 col-end-9">
-        <CreateBlogForm isEdit={false} />
+        <CreateBlogForm isEdit={true} />
       </div>
     </div>
   );

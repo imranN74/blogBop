@@ -35,15 +35,12 @@ export declare const postBlog: z.ZodObject<{
 export declare const updatePostBlog: z.ZodObject<{
     title: z.ZodString;
     content: z.ZodString;
-    id: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
-    id: string;
 }, {
     title: string;
     content: string;
-    id: string;
 }>;
 export type SignupInput = z.infer<typeof signupInput>;
 export type SigninInput = z.infer<typeof signinInput>;

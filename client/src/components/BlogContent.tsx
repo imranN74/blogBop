@@ -19,17 +19,13 @@ export const BlogContent = () => {
   };
 
   const { id } = useParams();
-  // const navigate = useNavigate();
+
   const [blog, setBlogContent] = useRecoilState<BlogPost[]>(
     blogAtom("blogContent")
   );
   const blogContent = useRecoilValueLoadable(
     specificBlogSelector(`/blog/${id}`)
   );
-
-  // if (blogContent.state === "hasValue") {
-  //   console.log(blogContent.contents);
-  // }
 
   useEffect(() => {
     if (blogContent.state === "hasValue") {

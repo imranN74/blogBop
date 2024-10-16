@@ -90,7 +90,7 @@ blogRouter.get("/", async (c) => {
 });
 
 //route to update blog
-blogRouter.put("/edit/:id", userAuthorization, async (c) => {
+blogRouter.post("/edit/:id", userAuthorization, async (c) => {
   const body = await c.req.json();
   const blogId = c.req.param("id");
 

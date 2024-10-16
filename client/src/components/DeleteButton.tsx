@@ -1,8 +1,33 @@
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_BASE_URL } from "../config";
+import { useNavigate } from "react-router-dom";
 
 export const DeleteButton = () => {
-  //   const { id } = useParams();
-  function handleDeleteButton() {}
+  const token = localStorage.getItem("jwt");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  async function handleDeleteButton() {
+    const confirmValue: boolean = confirm("Do you want to delete this post?");
+    console.log(confirmValue);
+    if (confirmValue) {
+      try {
+        const response = await axios.post(
+          `${BACKEND_BASE_URL}/blog/delete/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        alert(response.data.message);
+        navigate("/");
+      } catch (error: any) {
+        console.log(error);
+        alert(error.message);
+      }
+    }
+  }
 
   return (
     <div>
@@ -16,7 +41,7 @@ export const DeleteButton = () => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="size-6"
         >
