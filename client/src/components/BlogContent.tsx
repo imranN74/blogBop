@@ -56,8 +56,8 @@ export const BlogContent = () => {
           </div>
           {blog[1] ? (
             <div className="flex">
-              <DeleteButton />
               <EditButton />
+              <DeleteButton />
             </div>
           ) : (
             ""
