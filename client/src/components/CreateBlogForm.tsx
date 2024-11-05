@@ -77,7 +77,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
             {isEdit ? "UPDATE BLOG" : "POST NEW BLOG"}
           </div>
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mx-2">
           <label className="text-2xl font-semibold">Title</label>
           <input
             onChange={handleInputChange}
@@ -98,7 +98,7 @@ export const CreateBlogForm: React.FC<{ isEdit: boolean }> = ({ isEdit }) => {
             rows={10}
             cols={90}
             id="comment"
-            className="w-full px-1 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            className="w-full px-4 py-4 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="Write content here..."
             required
           ></textarea>
