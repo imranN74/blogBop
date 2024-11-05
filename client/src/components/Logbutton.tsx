@@ -13,6 +13,7 @@ export const LogButton: React.FC<UserStatus> = ({ status, toggle }) => {
   function handleLogButtonClick() {
     if (status) {
       localStorage.removeItem("jwt");
+      localStorage.removeItem("name");
       setAuth(false);
       navigate("/login");
     } else {

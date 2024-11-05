@@ -30,6 +30,13 @@ export const SignForm = ({ pageType }: multyPage) => {
       const token = data.token;
       setAuthToken(true);
       localStorage.setItem("jwt", token);
+      if (pageType === "signup") {
+        const name = userData.name.split(" ")[0];
+        localStorage.setItem("name", name);
+      } else {
+        const name = data.name.split(" ")[0];
+        localStorage.setItem("name", name);
+      }
       navigate("/");
     } catch (error: any) {
       console.log(error.response);

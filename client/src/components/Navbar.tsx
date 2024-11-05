@@ -30,6 +30,14 @@ export const Navbar = () => {
             <Logo />
           </div>
         </div>
+        {isLoggedIn ? (
+          <div>
+            Hey,
+            <span className="font-medium">{localStorage.getItem("name")}</span>
+          </div>
+        ) : (
+          ""
+        )}
         <button
           data-collapse-toggle="navbar-multi-level"
           type="button"
