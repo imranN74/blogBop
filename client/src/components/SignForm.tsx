@@ -5,6 +5,7 @@ import { BACKEND_BASE_URL } from "../config";
 import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import { authAtom } from "../store/atom";
+import { toast } from "react-toastify";
 
 interface multyPage {
   pageType: string;
@@ -42,9 +43,9 @@ export const SignForm = ({ pageType }: multyPage) => {
       console.log(error.response);
       const { data, status } = error.response;
       if (status === 409) {
-        alert(data.message);
+        toast.warn(data.message);
       } else {
-        window.alert(data.message);
+        toast.warn(data.message);
       }
     }
   }
