@@ -3,6 +3,7 @@ import { blogAtom, blogSelector } from "../store/atom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "./Loader";
+import { useNavigate } from "react-router-dom";
 
 export const Content = () => {
   type BlogPost = {
@@ -15,6 +16,8 @@ export const Content = () => {
     id: string;
     isAuther: boolean;
   };
+
+  const navigate = useNavigate();
 
   const response = useRecoilValueLoadable(blogSelector("/blog"));
   const [blogData, setBlogData] = useRecoilState<BlogPost[]>(blogAtom("blog"));
@@ -45,7 +48,13 @@ export const Content = () => {
             const findate = date.toLocaleDateString("en-GB", options);
 
             return (
-              <div key={index} className="mt-2 border-b py-5 shadow rounded-sm">
+              <div
+                onClick={() => {
+                  navigate(`/blog/${element.id}`);
+                }}
+                key={index}
+                className="mt-2 border-b py-5 shadow rounded-sm"
+              >
                 <div className="flex mx-5">
                   <div className="px-1 font-semibold">
                     {element.author.name === ""
