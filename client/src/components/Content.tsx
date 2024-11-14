@@ -53,7 +53,7 @@ export const Content = () => {
                   navigate(`/blog/${element.id}`);
                 }}
                 key={index}
-                className="mt-2 border-b py-5 shadow rounded-sm"
+                className="mt-2 border-b py-5 shadow rounded-sm cursor-pointer"
               >
                 <div className="flex mx-5">
                   <div className="px-1 font-semibold">
